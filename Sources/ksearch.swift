@@ -14,6 +14,8 @@ enum Quantity: String, ExpressibleByArgument {
 
 var resultado: [Int] = []
 
+// Main [Search, Info]
+
 @main
 struct Ksearch: ParsableCommand {
     
@@ -52,12 +54,17 @@ struct Ksearch: ParsableCommand {
     @Option(name: .shortAndLong, help: "choose a number from 2 to 24.")
     var membersCount: Int = 0
     
+    //VER INFORMAÇÃO   --info Twice
+    @Option(name: .shortAndLong, help: "shows detailed info of the group or soloist")
+    var info: String = ""
+    
     //SE VEIO PARA O BR --> FLAG É OPCIONAL       -b  --brazil
     @Flag(name: .shortAndLong, help: "Kpop artists who have already come to Brazil")
     var brazil: Bool = false
     
     mutating func run() throws {
         
+    
         filter()
         //aleatorio()
         //filterGroup(type: type, generation: generation, company: company, membersCount: membersCount, brazil: brazil)
