@@ -20,7 +20,9 @@ struct KpopSolo {
     let mostPopularReleases: [String]     // músicas mais populares
 }
 
-let kSolo: [KpopSolo] = [taeyeon, chungha, boa, leeHyori, uhmJungHwa, bada, jangNara, parkJiYoon, hyuna, iu, ailee, gain, tiffany, heize, baekYerin, leeHi, sunmi, suran, yooa, hwasa]
+let kSolo: [KpopSolo] = [taeyeon, chungha, boa, leeHyori, uhmJungHwa, bada, jangNara, parkJiYoon, hyuna, iu, ailee, gain, tiffanyYoung, heize, baekYerin, leeHi, sunmi, suran, yooa, hwasa]
+
+//Qual grupo? se belongsToGroup for true
 
 // ------------ F E M A L E ------------
 
@@ -33,8 +35,8 @@ let taeyeon = KpopSolo(
     generation: "2nd",
     company: "SM Entertainment",
     cameToBrazil: false,
-    latestKoreanReleases: ["What Do I Call You (2020)", "Happy (2020)"],
-    mostPopularReleases: ["I (2015)", "Rain (2016)", "Four Seasons (2019)", "Fine (2017)"]
+    latestKoreanReleases: ["To. X", "INVU", "Can't Control Myself"],
+    mostPopularReleases: ["INVU", "To. X", "Fine"]
 )
 
 let chungha = KpopSolo(
@@ -44,10 +46,10 @@ let chungha = KpopSolo(
     membersCount: 1,
     belongsToGroup: true, // Anteriormente pertenceu ao grupo I.O.I
     generation: "3rd",
-    company: "MNH Entertainment",
+    company: "MORE VISION",
     cameToBrazil: false,
-    latestKoreanReleases: ["Querencia (2021)", "PLAY (2020)"],
-    mostPopularReleases: ["Gotta Go (2019)", "Snapping (2019)", "Bicycle (2020)"]
+    latestKoreanReleases: ["ENNIE MENNIE (Feat. Hongjoong of ATEEZ", "Sparkling", "Killing Me"],
+    mostPopularReleases: ["Gotta Go", "Snapping", "Bicycle"]
 )
 
 let boa = KpopSolo(
@@ -59,8 +61,8 @@ let boa = KpopSolo(
     generation: "1st",
     company: "SM Entertainment",
     cameToBrazil: false,
-    latestKoreanReleases: ["Better (2020)", "Starry Night (2020)"],
-    mostPopularReleases: ["No.1 (2002)", "Atlantis Princess (2003)", "My Name (2004)"]
+    latestKoreanReleases: ["The Greatest", "Forgive Me, My Dear"],
+    mostPopularReleases: ["Only One", "No. 1", "Valenti"]
 )
 
 let leeHyori = KpopSolo(
@@ -70,10 +72,10 @@ let leeHyori = KpopSolo(
     membersCount: 1,
     belongsToGroup: true, // Anteriormente pertenceu ao grupo Fin.K.L
     generation: "1st",
-    company: "B2M Entertainment",
+    company: "Antenna",
     cameToBrazil: false,
-    latestKoreanReleases: ["Black (2017)", "SEOUL (2021)"],
-    mostPopularReleases: ["10 Minutes (2003)", "U-Go-Girl (2008)", "Bad Girls (2013)"]
+    latestKoreanReleases: ["Wish You The Same (Prod. Lee Sang Soon", "HOODIE E BANBAJI", "Happy me from today"],
+    mostPopularReleases: ["10 Minutes", "U-Go-Girl", "Miss Korea"]
 )
 
 let uhmJungHwa = KpopSolo(
@@ -81,38 +83,38 @@ let uhmJungHwa = KpopSolo(
     soloist: "FemaleSolo",
     debut: 1993,
     membersCount: 1,
-    belongsToGroup: false,
+    belongsToGroup: true, // REFUND SISTERS
     generation: "1st",
-    company: "Mystic Story",
+    company: "Saram Entertainment",
     cameToBrazil: false,
-    latestKoreanReleases: ["Doong Doong (2020)", "Hop In (2021)"],
-    mostPopularReleases: ["Festival (1998)", "Invitation (2000)", "D.I.S.C.O. (2008)"]
+    latestKoreanReleases: ["Ending Credit", "Hop In (Feat. Hwa Sa, DPR LIVE)", "Dreamer"],
+    mostPopularReleases: ["Ending Credit", "Invitation", "Hop In (Feat. Hwa Sa, DPR LIVE)"]
 )
 
 let bada = KpopSolo(
     name: "Bada",
     soloist: "FemaleSolo",
-    debut: 1996,
+    debut: 2003,
     membersCount: 1,
     belongsToGroup: true, // Anteriormente pertenceu ao grupo S.E.S
     generation: "1st",
-    company: "Mystic Story",
+    company: "Wave Nine",
     cameToBrazil: false,
-    latestKoreanReleases: ["Flower (2020)", "Sunny Hill (2021)"],
-    mostPopularReleases: ["V.I.P (2003)", "Music (2004)", "Queen (2009)"]
+    latestKoreanReleases: ["Not for sale this christmas (Feat. Eugene)", "localized heavy rain", "The Blue Night Of Jeju Island"],
+    mostPopularReleases: ["Cosmic", "MAD", "Flower (Feat. Kanto)"]
 )
 
 let jangNara = KpopSolo(
-    name: "Jang Nara",
+    name: "Jang Na-ra",
     soloist: "FemaleSolo",
     debut: 2001,
     membersCount: 1,
     belongsToGroup: false,
     generation: "1st",
-    company: "Rawon Culture",
+    company: "None",
     cameToBrazil: false,
-    latestKoreanReleases: ["Kitty (2019)", "Puppy (2020)"],
-    mostPopularReleases: ["Sweet Dream (2002)", "Walk in a Dreamy Road (2005)", "Happy Woman (2013)"]
+    latestKoreanReleases: ["ABC SONG", "Let's Sing!"],
+    mostPopularReleases: ["Sweet Dream (2002)", "calling love", "Last Pray"]
 )
 
 let parkJiYoon = KpopSolo(
@@ -122,23 +124,23 @@ let parkJiYoon = KpopSolo(
     membersCount: 1,
     belongsToGroup: false,
     generation: "1st",
-    company: "Mystic Story",
+    company: "Parkjiyoon Creative",
     cameToBrazil: false,
-    latestKoreanReleases: ["Beep (2017)", "I Am a Singer (2021)"],
-    mostPopularReleases: ["Adult Ceremony (2000)", "Coming-of-Age Ceremony (2000)", "Mr. Lee (2001)"]
+    latestKoreanReleases: ["Breathe a Breathe", "Moon", "You"],
+    mostPopularReleases: ["Yoo Hoo", "Coming-of-Age Ceremony (2000)", "I'll Say It's Alright"]
 )
 
 let hyuna = KpopSolo(
     name: "HyunA",
     soloist: "FemaleSolo",
-    debut: 2007,
+    debut: 2010,
     membersCount: 1,
     belongsToGroup: true, // Anteriormente pertenceu ao grupo 4Minute e Wonder Girls
     generation: "2nd",
-    company: "PNation",
+    company: "AT AREA",
     cameToBrazil: false,
-    latestKoreanReleases: ["I'm Not Cool (2021)", "FLOWER SHOWER (2019)"],
-    mostPopularReleases: ["Bubble Pop! (2011)", "RED (2014)", "Roll Deep (2015)"]
+    latestKoreanReleases: ["I'm Not Cool", "Nabillera"],
+    mostPopularReleases: ["Bubble Pop!", "I'm Not Cool", "Lip & Hip"]
 )
 
 let iu = KpopSolo(
@@ -150,8 +152,8 @@ let iu = KpopSolo(
     generation: "2nd",
     company: "EDAM Entertainment",
     cameToBrazil: false,
-    latestKoreanReleases: ["LILAC (2021)", "Love poem (2019)"],
-    mostPopularReleases: ["Good Day (2010)", "Palette (2017)", "BBIBBI (2018)"]
+    latestKoreanReleases: ["Love wins all", "Mother Nature (H₂O) (feat. Kang Seungwon)", "LILAC"],
+    mostPopularReleases: ["Love wins all", "Shopper", "eight (Prod.&Feat. SUGA of BTS)"]
 )
 
 let ailee = KpopSolo(
@@ -161,10 +163,10 @@ let ailee = KpopSolo(
     membersCount: 1,
     belongsToGroup: false,
     generation: "2nd",
-    company: "Rocket3 Entertainment",
+    company: "A2Z Entertainment",
     cameToBrazil: false,
-    latestKoreanReleases: ["I'm (2020)", "butterFLY (2019)"],
-    mostPopularReleases: ["Heaven (2012)", "I Will Go To You Like the First Snow (2017)", "U&I (2013)"]
+    latestKoreanReleases: ["One Day", "RA TA TA (Feat. Lil Cherry)", "I'll hold you"],
+    mostPopularReleases: ["I Will Go To You Like The First Snow", "Breaking Down", "I Will Show You"]
 )
 
 let gain = KpopSolo(
@@ -174,23 +176,23 @@ let gain = KpopSolo(
     membersCount: 1,
     belongsToGroup: true, // Anteriormente pertenceu ao grupo Brown Eyed Girls
     generation: "2nd",
-    company: "Mystic Story",
+    company: "MYSTIC Story",
     cameToBrazil: false,
-    latestKoreanReleases: ["End Again (2021)", "Talk about S. (2018)"],
-    mostPopularReleases: ["Bloom (2012)", "Paradise Lost (2015)", "Irreversible (2009)"]
+    latestKoreanReleases: ["Pray", "Carnival", "Apple (Feat. Jay Park)"],
+    mostPopularReleases: ["Paradise Lost", "Bloom", "Tinkerbell"]
 )
 
-let tiffany = KpopSolo(
-    name: "Tiffany",
+let tiffanyYoung = KpopSolo(
+    name: "Tiffany Young",
     soloist: "FemaleSolo",
     debut: 2016,
     membersCount: 1,
     belongsToGroup: true, // Anteriormente pertenceu ao grupo Girls' Generation
-    generation: "2nd",
-    company: "Transparent Arts",
+    generation: "3rd",
+    company: "SUBLIME",
     cameToBrazil: false,
-    latestKoreanReleases: ["Run for Your Life (2019)", "Teach You (2018)"],
-    mostPopularReleases: ["I Just Wanna Dance (2016)", "Over My Skin (2018)", "Magnetic Moon (2019)"]
+    latestKoreanReleases: ["Run for Your Life", "Magnetic Moon", "Lips on Lips"],
+    mostPopularReleases: ["I Just Wanna Dance", "Runaway (Feat. Babyface)", "Lips on Lips"]
 )
 
 let heize = KpopSolo(
@@ -200,23 +202,23 @@ let heize = KpopSolo(
     membersCount: 1,
     belongsToGroup: false,
     generation: "2nd",
-    company: "Stone Music Entertainment",
+    company: "P Nation",
     cameToBrazil: false,
-    latestKoreanReleases: ["Happen (2021)", "Lyricist (2020)"],
-    mostPopularReleases: ["You, Clouds, Rain (2017)", "Star (2021)", "Jenga (2018)"]
+    latestKoreanReleases: ["Stranger", "It'll pass", "VingleVingle (Prod. R.Tee)"],
+    mostPopularReleases: ["You, Clouds, Rain", "We don't talk together (Prod. by SUGA)", "Round and Round (Feat. Han Suji)"]
 )
 
 let baekYerin = KpopSolo(
-    name: "Baek Yerin",
+    name: "Yerin Baek",
     soloist: "FemaleSolo",
-    debut: 2015,
+    debut: 2019,
     membersCount: 1,
     belongsToGroup: true, // Anteriormente pertenceu ao grupo 15&
-    generation: "2nd",
+    generation: "3rd",
     company: "Blue Vinyl",
     cameToBrazil: false,
-    latestKoreanReleases: ["Every letter I sent you. (2020)", "Love, Yerin (2019)"],
-    mostPopularReleases: ["Across The Universe (2019)", "Bye bye my blue (2015)", "Maybe It's Not Our Fault (2016)"]
+    latestKoreanReleases: ["A Walk", "Pisces", "The Other Side"],
+    mostPopularReleases: ["Here I Am Again", "Bye bye my blue (2015)", "Across the universe"]
 )
 
 let leeHi = KpopSolo(
@@ -228,8 +230,8 @@ let leeHi = KpopSolo(
     generation: "2nd",
     company: "AOMG",
     cameToBrazil: false,
-    latestKoreanReleases: ["4 Only (2021)", "Seoulite (2016)"],
-    mostPopularReleases: ["Breathe (2016)", "Rose (2013)", "HOLO (2020)"]
+    latestKoreanReleases: ["My Beloved", "Alley (with SUNG SI KYUNG)", "Red Lipstick"],
+    mostPopularReleases: ["ONLY", "BREATHE", "MY LOVE"]
 )
 
 let sunmi = KpopSolo(
@@ -239,10 +241,10 @@ let sunmi = KpopSolo(
     membersCount: 1,
     belongsToGroup: true, // Anteriormente pertenceu ao grupo Wonder Girls
     generation: "2nd",
-    company: "MAKEUS Entertainment",
+    company: "ABYSS Company",
     cameToBrazil: false,
-    latestKoreanReleases: ["TAIL (2021)", "LALALAY (2019)"],
-    mostPopularReleases: ["24 Hours (2013)", "Gashina (2017)", "Siren (2018)"]
+    latestKoreanReleases: ["STRANGER", "Heart Burn", "Oh Sorry Ya"],
+    mostPopularReleases: ["24 Hours", "Gashina", "TAIL"]
 )
 
 let suran = KpopSolo(
@@ -252,10 +254,10 @@ let suran = KpopSolo(
     membersCount: 1,
     belongsToGroup: false,
     generation: "2nd",
-    company: "Mystic Story",
+    company: "S-TASY",
     cameToBrazil: false,
-    latestKoreanReleases: ["The Door (2021)", "Jumpin' (2019)"],
-    mostPopularReleases: ["Wine (2017)", "Love Story (2018)", "1+1=0 (2017)"]
+    latestKoreanReleases: ["The Day After You Said Goodbye", "Only One", "Forget Me Not"],
+    mostPopularReleases: ["WINE (Feat. Changmo)(Prod. SUGA)", "Heartbeat", "Love Story (Feat. CRUSH)"]
 )
 
 let yooa = KpopSolo(
@@ -267,21 +269,21 @@ let yooa = KpopSolo(
     generation: "4th",
     company: "WM Entertainment",
     cameToBrazil: false,
-    latestKoreanReleases: ["Bon Voyage (2021)", "YooA's Solo Debut Album (2020)"],
-    mostPopularReleases: ["Bon Voyage (2021)", "Diver (2020)"]
+    latestKoreanReleases: ["Bon Voyage", "Rooftop", "Selfish"],
+    mostPopularReleases: ["Bon Voyage", "Rooftop", "Selfish"]
 )
 
 let hwasa = KpopSolo(
     name: "Hwasa",
     soloist: "FemaleSolo",
-    debut: 2014,
+    debut: 2019,
     membersCount: 1,
     belongsToGroup: true, // Pertence ao grupo MAMAMOO
     generation: "4th",
-    company: "RBW",
+    company: "P Nation",
     cameToBrazil: false,
-    latestKoreanReleases: ["Maria (2020)", "TWIT (2019)"],
-    mostPopularReleases: ["Maria (2020)", "TWIT (2019)", "Be Calm (2018)"]
+    latestKoreanReleases: ["Chili", "I Love My Body", "Somebody!"],
+    mostPopularReleases: ["Maria", "I Love My Body", "Chili"]
 )
 
 // -------------------- B O Y ----------------------
