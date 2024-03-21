@@ -4,6 +4,7 @@
 // Swift Argument Parser
 // https://swiftpackageindex.com/apple/swift-argument-parser/documentation
 
+import Foundation
 import ArgumentParser
 
 enum Quantity: String, ExpressibleByArgument {
@@ -19,23 +20,34 @@ var resultado: [Int] = []
 @main
 struct Ksearch: ParsableCommand {
     
+    static var configuration = CommandConfiguration(subcommands: [Search.self, Info.self], defaultSubcommand: Search.self)
+    
+}
+struct Search: ParsableCommand {
+    
     static var configuration = CommandConfiguration(
         
         abstract: "Kpop Artist Finder",     // OVERVIEW
         
-        usage: "ksearch <subcommand> [OPTIONS]",  // USAGE
+        usage: "ksearch <quantity> [--type <type>] [--generation <generation>] [--soloist <soloist>] [--company <company>] [--members-count <members-count>] [--info <info>] [--brazil]",  // USAGE
         
-        discussion: "This tool is designed to assist in searching for solo K-Pop artists or K-Pop groups, providing random names or filtering by user preferences such as group type, generation, number of members, company, and visits to Brazil. Furthermore, the user will be able to obtain more information about the discovered artists or other artists they already know and would like to learn more about them."    // EXPLICA O QUE O PROGRAMA FAZ
+        discussion: """
+                    _   __ _____ _____  ___  ______  _____  _   _
+                    | | / //  ___|  ___|/ _ \\ | ___ \\/  __ \\| | | |
+                    | |/ / \\ `--.| |__ / /_\\ \\| |_/ /| /  \\/| |_| |
+                    |    \\  `--. \\  __||  _  ||    / | |    |  _  |
+                    | |\\  \\/\\__/ / |___| | | || |\\ \\ | \\__/\\| | | |
+                    \\_| \\_/\\____/\\____/\\_| |_/\\_| \\_| \\____/\\_| |_|
+                    
+                    This tool is designed to assist in searching for solo K-Pop artists or K-Pop groups, providing random names or filtering by user preferences such as group type, generation, number of members, company, and visits to Brazil. Furthermore, the user will be able to obtain more information about the discovered artists or other artists they already know and would like to learn more about them.
+                    """
+            // EXPLICA O QUE O PROGRAMA FAZ
     )
-    
-    //@Argument(help: "")
-    //var artist: String = ""
-    
-    @Argument(help: " ")
+    @Argument(help: "Ask for one, three, or five K-pop artists.")
     var quantity: Quantity    // só três casos: 1, 3 ou 5 grupo/solo
     
     //TIPO DE GRUPO      -t --type gg ou bg ou mg
-    @Option(help: "girlgroup or gg , boygroup or bg, mixedgroup or mg.")
+    @Option(name: .shortAndLong, help: "girlgroup or gg , boygroup or bg, mixedgroup or mg.")
     var type: String = ""
     
     //GERAÇÃO DO GRUPO     -g --generation 1st ou 2nd ou 3rd ou 4th
@@ -63,24 +75,7 @@ struct Ksearch: ParsableCommand {
     var brazil: Bool = false
     
     mutating func run() throws {
-        
-    
         filter()
-        //aleatorio()
-        //filterGroup(type: type, generation: generation, company: company, membersCount: membersCount, brazil: brazil)
-        //filterSolo(soloist: soloist, generation: generation, company: company, brazil: brazil)
-        if resultado.count != 0 {
-            for i in 0...(resultado.count - 1) {
-                if resultado[i] < (kpopGroup.count) {
-                    print(kpopGroup[resultado[i]].name)
-                } else {
-                    print(kSolo[resultado[i] - kpopGroup.count].name)
-                }
-                
-            }
-        } else {
-            print("Your search did not return any results. 🥲")
-        }
     }
     
     mutating func filter () {
@@ -92,36 +87,40 @@ struct Ksearch: ParsableCommand {
         
         aleatorio()
         
-        
     }
     
     func aleatorio () {
         resultado.shuffle()
         
         if !resultado.isEmpty {
+            print("Here is the result of your search. 🤗 \n")
             
             for i in 0...(resultado.count - 1) {
-                print(resultado[i])
-                print("")
                 if quantity.self.rawValue == "one" {
                     if i > 0 {
+                        print("\nIf you want to know more about any of these artists, try 'ksearch info <artist>' 😄")
                         break
                     }
                 }
                 if quantity.self.rawValue == "three" {
                     if i > 2 {
+                        print("\nIf you want to know more about any of these artists, try 'ksearch info <artist>' 😄")
                         break
                     }
                 }
                 if quantity.self.rawValue == "five" {
                     if i > 4 {
+                        print("\nIf you want to know more about any of these artists, try 'ksearch info <artist>' 😄")
                         break
                     }
                 }
                 if resultado[i] <= (kpopGroup.count - 1) {
-                    print(kpopGroup[resultado[i]].name)
+                    print("\(i+1). \(kpopGroup[resultado[i]].name)")
                 } else {
-                    print(kSolo[resultado[i] - kpopGroup.count].name)
+                    print("\(i+1). \(kSolo[resultado[i] - kpopGroup.count].name)")
+                }
+                if i == resultado.count - 1 {
+                    print("\nIf you want to know more about any of these artists, try 'ksearch info <artist>' 😄")
                 }
             }
         } else {
@@ -159,7 +158,6 @@ struct Ksearch: ParsableCommand {
             self.company = "Starship Entertainment"
         }
     }
-    
     // TODO: Experimentar funções com inout e sem
     fileprivate func checkOtherCompanies(_ i: (Int), _ removed: inout Bool) {
         if self.company == "others" {
@@ -209,7 +207,7 @@ struct Ksearch: ParsableCommand {
         }
     }
     
-    fileprivate func filterBrazil(_ removed: inout Bool, _ brazil: Bool, _ i: (Int)) {
+    fileprivate func filterBrazilGroup(_ removed: inout Bool, _ brazil: Bool, _ i: (Int)) {
         if !removed, brazil {
             if !kpopGroup[i].cameToBrazil {
                 resultado.remove(at: i)
@@ -228,7 +226,7 @@ struct Ksearch: ParsableCommand {
             filterGeneration(&removed, generation, i)
             filterCompany(&removed, company, i)
             filterMembers(&removed, membersCount, i)
-            filterBrazil(&removed, brazil, i)
+            filterBrazilGroup(&removed, brazil, i)
             i -= 1
         }
     }
@@ -242,18 +240,22 @@ struct Ksearch: ParsableCommand {
         }
     }
     
+    fileprivate func filterGenerationSolo(_ removed: inout Bool, _ generation: String, _ i: (Int)) {
+        if !removed, !generation.isEmpty {
+            if !kSolo[i].generation.contains(generation) {
+                resultado.remove(at: i + kpopGroup.count)
+                removed = true
+            }
+        }
+    }
+    
     mutating func filterSolo(soloist: String, generation: String, company: String, brazil: Bool) {
             
         var i = (kSolo.count - 1)
         while i > -1 {
             var removed: Bool = false
             filterSoloist(soloist, i, &removed)
-            if !removed, !generation.isEmpty {
-                if !kSolo[i].generation.contains(generation) {
-                    resultado.remove(at: i + kpopGroup.count)
-                    removed = true
-                }
-            }
+            filterGenerationSolo(&removed, generation, i)
             if !removed, !company.isEmpty {
                 setupFullNameCompany()
                 if !kSolo[i].company.contains(self.company) {
@@ -282,5 +284,46 @@ struct Ksearch: ParsableCommand {
             }
             i -= 1
         }
+    }
+    
+}
+
+struct Info: ParsableCommand {
+  
+    static let configuration = CommandConfiguration(
+        commandName: "info",
+        abstract: "Get detailed information about a K-pop group. 🫰🏼"
+    )
+    
+    @Argument (help: "Get detailed information about a K-pop group. 🫰🏼")
+    var artistName: String
+    
+    func run() throws {
+        
+        for i in 0...(kpopGroup.count + kSolo.count - 1) {
+            if kpopGroup[i].name.contains(artistName) {
+                printDetailsGroup(i)
+                break
+            }
+            if i > kpopGroup.count - 1 {
+                if kSolo[i - kpopGroup.count].name.contains(artistName) {
+                    printDetailsSolo(i - kpopGroup.count)
+                    break
+                }
+            }
+            if i == kpopGroup.count + kSolo.count - 1 {
+                print("Your search did not return any results. 🥲")
+            }
+        }
+        
+        print("")
+    }
+    
+    func printDetailsGroup (_ indice: Int) {
+        print("Name: \(kpopGroup[indice].name)\n Type: \(kpopGroup[indice].type)\n Debut year: \(kpopGroup[indice].debutYear)\n Number of members: \(kpopGroup[indice].membersCount)\n Members: \(kpopGroup[indice].members)\n Soloists: \(kpopGroup[indice].soloists)\n Generation: \(kpopGroup[indice].generation)\n Company: \(kpopGroup[indice].company)\n Came to Brazil?\(kpopGroup[indice].cameToBrazil)\n Latest album: \(kpopGroup[indice].latestAlbum)\n Recent releases: \(kpopGroup[indice].recentReleases)")
+    }
+    
+    func printDetailsSolo (_ indice: Int) {
+        print("Name: \(kSolo[indice].name)\n Type: \(kSolo[indice].soloist)\n Debut solo: \(kSolo[indice].debut)\n Belongs to group? \(kSolo[indice].belongsToGroup)\n Generation: \(kSolo[indice].generation)\n Company: \(kSolo[indice].company)\n Came to Brazil?\(kSolo[indice].cameToBrazil)\n Latest korean releases: \(kSolo[indice].latestKoreanReleases)\n Most popular releases: \(kSolo[indice].mostPopularReleases)")
     }
 }

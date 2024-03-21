@@ -51,7 +51,11 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--help"
+            argument = "help search"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = " help info"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
@@ -64,6 +68,10 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--type GirlGroup"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "info GFriend"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
@@ -100,10 +108,22 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "three"
-            isEnabled = "YES">
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "info KARA"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "five"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "help"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "three --type gg "
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument

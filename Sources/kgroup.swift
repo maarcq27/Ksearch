@@ -22,8 +22,7 @@ struct KpopGroup {
     let recentReleases: [String]         // músicas mais populares
 }
 
-let kpopGroup: [KpopGroup] = [ses, finKL, babyVOX, milk, wonderGirls, girlsGeneration, gFriend]
-//kara, twoNE1, tara, fourMinute, afterSchool, brownEyedGirls, sistar, missA, nineMuses, apink, aoa, exid, helloVenus, redVelvet, mamamoo, lovelyz, gFriend, twice, clc, ohMyGirl, april, wjsn, blackpink, ioi, momoland, dreamcatcher, gidle, izone, loona, fromis9, cherryBullet, itzy, everglow, rocketPunch, aespa, stayc, purplekiss, tribe, ive
+let kpopGroup: [KpopGroup] = [ses, finKL, babyVOX, milk, wonderGirls, girlsGeneration, kara, gFriend, twoNE1, tara, fourMinute, afterSchool, brownEyedGirls, sistar, missA, nineMuses, apink, aoa, exid, helloVenus, redVelvet, mamamoo, lovelyz, gFriend, twice, clc, ohMyGirl, april, wjsn, blackpink, ioi, momoland, dreamcatcher, gidle, izone, loona, fromis9, cherryBullet, itzy, everglow, rocketPunch, aespa, stayc, purplekiss, tribe, ive]
 
 // ----------------------- G I R L -----------------------
 
@@ -36,7 +35,7 @@ let ses: KpopGroup = KpopGroup(
     membersCount: 3,
     members: ["Bada", "Eugene", "Shoo"],
     soloists: ["Bada"],
-    generation: "1",
+    generation: "1st",
     company: "SM Entertainment",
     cameToBrazil: true, //false
     latestAlbum: "Remember",
@@ -73,12 +72,12 @@ let babyVOX: KpopGroup = KpopGroup(
 
 let milk: KpopGroup = KpopGroup(
     name: "M.I.L.K",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2001,
     membersCount: 4,
     members: ["Seo Hyun-jin", "Bae Yu-mi", "Park Hee-bon", "Hyun Ji-young"],
     soloists: ["Seo Hyun-jin"],
-    generation: "1st gen",
+    generation: "1st",
     company: "SM Entertainment",
     cameToBrazil: false,
     latestAlbum: "With Freshness",
@@ -89,12 +88,12 @@ let milk: KpopGroup = KpopGroup(
 
 let wonderGirls: KpopGroup = KpopGroup(
     name: "Wonder Girls",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2007,
     membersCount: 4,
     members: ["Yubin", "Yeeun", "Sunmi", "Hyerim"],
     soloists: ["Yeeun", "Sunmi"],
-    generation: "2nd gen",
+    generation: "2nd",
     company: "JYP Entertainment",
     cameToBrazil: true,
     latestAlbum: "Reboot",
@@ -103,12 +102,12 @@ let wonderGirls: KpopGroup = KpopGroup(
 
 let girlsGeneration: KpopGroup = KpopGroup(
     name: "Girls' Generation",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2007,
     membersCount: 8,
     members: ["Taeyeon", "Sunny", "Tiffany", "Hyoyeon", "Yuri", "Sooyoung", "Yoona", "Seohyun"],
     soloists: ["Taeyeon", "Tiffany", "Hyoyeon", "Yuri", "Seohyun"],
-    generation: "2nd gen",
+    generation: "2nd",
     company: "SM Entertainment",
     cameToBrazil: true,
     latestAlbum: "Holiday Night",
@@ -117,12 +116,12 @@ let girlsGeneration: KpopGroup = KpopGroup(
 
 let kara: KpopGroup = KpopGroup(
     name: "KARA",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2007,
     membersCount: 4,
     members: ["Gyuri", "Seungyeon", "Hara", "Youngji"],
     soloists: ["Gyuri", "Seungyeon", "Hara"],
-    generation: "2nd gen",
+    generation: "2nd",
     company: "DSP Media",
     cameToBrazil: false,
     latestAlbum: "In Love",
@@ -131,12 +130,12 @@ let kara: KpopGroup = KpopGroup(
 
 let twoNE1: KpopGroup = KpopGroup(
     name: "2NE1",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2009,
     membersCount: 4,
     members: ["CL", "Dara", "Bom", "Minzy"],
     soloists: ["CL", "Dara"],
-    generation: "2nd gen",
+    generation: "2nd",
     company: "YG Entertainment",
     cameToBrazil: false,
     latestAlbum: "Crush",
@@ -145,12 +144,12 @@ let twoNE1: KpopGroup = KpopGroup(
 
 let tara: KpopGroup = KpopGroup(
     name: "T-ara",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2009,
     membersCount: 6,
     members: ["Qri", "Eunjung", "Hyomin", "Jiyeon", "Soyeon", "Boram"],
     soloists: ["Jiyeon", "Hyomin", "Soyeon"],
-    generation: "2nd gen",
+    generation: "2nd",
     company: "MBK Entertainment",
     cameToBrazil: false,
     latestAlbum: "Remember",
@@ -159,12 +158,12 @@ let tara: KpopGroup = KpopGroup(
 
 let fourMinute: KpopGroup = KpopGroup(
     name: "4Minute",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2009,
     membersCount: 5,
     members: ["Hyuna", "Gayoon", "Jiyoon", "Jihyun", "Sohyun"],
     soloists: ["Hyuna"],
-    generation: "2nd gen",
+    generation: "2nd",
     company: "Cube Entertainment",
     cameToBrazil: false,
     latestAlbum: "Act. 7",
@@ -173,12 +172,12 @@ let fourMinute: KpopGroup = KpopGroup(
 
 let afterSchool: KpopGroup = KpopGroup(
     name: "After School",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2009,
     membersCount: 8,
     members: ["Nana", "Raina", "Lizzy", "E-Young", "Kaeun", "Jooyeon", "Uee", "Jungah"],
     soloists: ["Nana", "Raina", "Lizzy"],
-    generation: "2nd gen",
+    generation: "2nd",
     company: "Pledis Entertainment",
     cameToBrazil: false,
     latestAlbum: "First Love",
@@ -187,12 +186,12 @@ let afterSchool: KpopGroup = KpopGroup(
 
 let brownEyedGirls: KpopGroup = KpopGroup(
     name: "Brown Eyed Girls",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2006,
     membersCount: 4,
     members: ["JeA", "Miryo", "Narsha", "Gain"],
     soloists: ["Gain"],
-    generation: "2nd gen",
+    generation: "2nd",
     company: "APOP Entertainment",
     cameToBrazil: false,
     latestAlbum: "Basic",
@@ -201,12 +200,12 @@ let brownEyedGirls: KpopGroup = KpopGroup(
 
 let sistar: KpopGroup = KpopGroup(
     name: "Sistar",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2010,
     membersCount: 4,
     members: ["Hyolyn", "Bora", "Soyou", "Dasom"],
     soloists: ["Hyolyn", "Soyou"],
-    generation: "2nd gen",
+    generation: "2nd",
     company: "Starship Entertainment",
     cameToBrazil: false,
     latestAlbum: "Lonely",
@@ -215,12 +214,12 @@ let sistar: KpopGroup = KpopGroup(
 
 let missA: KpopGroup = KpopGroup(
     name: "Miss A",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2010,
     membersCount: 4,
     members: ["Fei", "Jia", "Min", "Suzy"],
     soloists: ["Fei", "Jia", "Min", "Suzy"],
-    generation: "2nd gen",
+    generation: "2nd",
     company: "JYP Entertainment",
     cameToBrazil: false,
     latestAlbum: "Colors",
@@ -229,12 +228,12 @@ let missA: KpopGroup = KpopGroup(
 
 let nineMuses: KpopGroup = KpopGroup(
     name: "Nine Muses",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2010,
     membersCount: 9,
     members: ["Hyemi", "Hyuna", "Sungah", "Kyungri", "Keumjo", "Sojin", "Minha", "Euaerin", "Bini"],
     soloists: ["Kyungri"],
-    generation: "2nd gen",
+    generation: "2nd",
     company: "Star Empire Entertainment",
     cameToBrazil: false,
     latestAlbum: "Muses Diary",
@@ -243,12 +242,12 @@ let nineMuses: KpopGroup = KpopGroup(
 
 let apink: KpopGroup = KpopGroup(
     name: "Apink",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2011,
     membersCount: 6,
     members: ["Park Chorong", "Yoon Bomi", "Jung Eun-ji", "Son Na-eun", "Kim Nam-joo", "Oh Ha-young"],
     soloists: ["Jung Eun-ji"],
-    generation: "2nd gen",
+    generation: "2nd",
     company: "Play M Entertainment",
     cameToBrazil: false,
     latestAlbum: "Dear",
@@ -257,12 +256,12 @@ let apink: KpopGroup = KpopGroup(
 
 let aoa: KpopGroup = KpopGroup(
     name: "AOA",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2012,
     membersCount: 7,
     members: ["Jimin", "Yuna", "Hyejeong", "Seolhyun", "Chanmi", "MinA", "Youkyung"],
     soloists: ["Jimin", "Yuna"],
-    generation: "2nd gen",
+    generation: "2nd",
     company: "FNC Entertainment",
     cameToBrazil: true,
     latestAlbum: "New Moon",
@@ -271,12 +270,12 @@ let aoa: KpopGroup = KpopGroup(
 
 let exid: KpopGroup = KpopGroup(
     name: "EXID",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2012,
     membersCount: 5,
     members: ["Solji", "LE", "Hani", "Hyelin", "Jeonghwa"],
     soloists: ["Solji"],
-    generation: "2nd gen",
+    generation: "2nd",
     company: "Banana Culture Entertainment",
     cameToBrazil: false,
     latestAlbum: "B.L.E.S.S.E.D",
@@ -285,12 +284,12 @@ let exid: KpopGroup = KpopGroup(
 
 let helloVenus: KpopGroup = KpopGroup(
     name: "Hello Venus",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2012,
     membersCount: 6,
     members: ["Yoo Ara", "Nara", "Lime", "Yoonjo", "Alice", "Seoyoung"],
     soloists: [],
-    generation: "2nd gen",
+    generation: "2nd",
     company: "Fantagio",
     cameToBrazil: false,
     latestAlbum: "Mystery of Venus",
@@ -301,7 +300,7 @@ let helloVenus: KpopGroup = KpopGroup(
 
 let redVelvet: KpopGroup = KpopGroup(
     name: "Red Velvet",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2014,
     membersCount: 5,
     members: ["Irene", "Seulgi", "Wendy", "Joy", "Yeri"],
@@ -315,7 +314,7 @@ let redVelvet: KpopGroup = KpopGroup(
 
 let mamamoo: KpopGroup = KpopGroup(
     name: "Mamamoo",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2014,
     membersCount: 4,
     members: ["Solar", "Moonbyul", "Wheein", "Hwasa"],
@@ -329,7 +328,7 @@ let mamamoo: KpopGroup = KpopGroup(
 
 let lovelyz: KpopGroup = KpopGroup(
     name: "Lovelyz",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2014,
     membersCount: 8,
     members: ["Babysoul", "Jiae", "Jisoo", "Mijoo", "Kei", "Jin", "Sujeong", "Yein"],
@@ -357,7 +356,7 @@ let gFriend: KpopGroup = KpopGroup(
 
 let twice: KpopGroup = KpopGroup(
     name: "Twice",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2015,
     membersCount: 9,
     members: ["Nayeon", "Jeongyeon", "Momo", "Sana", "Jihyo", "Mina", "Dahyun", "Chaeyoung", "Tzuyu"],
@@ -371,7 +370,7 @@ let twice: KpopGroup = KpopGroup(
 
 let clc: KpopGroup = KpopGroup(
     name: "CLC",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2015,
     membersCount: 7,
     members: ["Seunghee", "Yujin", "Seungyeon", "Sorn", "Yeeun", "Elkie", "Eunbin"],
@@ -385,7 +384,7 @@ let clc: KpopGroup = KpopGroup(
 
 let ohMyGirl: KpopGroup = KpopGroup(
     name: "Oh My Girl",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2015,
     membersCount: 7,
     members: ["Hyojung", "Mimi", "YooA", "Seunghee", "Jiho", "Binnie", "Arin"],
@@ -399,7 +398,7 @@ let ohMyGirl: KpopGroup = KpopGroup(
 
 let april: KpopGroup = KpopGroup(
     name: "April",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2015,
     membersCount: 5,
     members: ["Chaekyung", "Chaewon", "Naeun", "Yena", "Jinsol"],
@@ -413,7 +412,7 @@ let april: KpopGroup = KpopGroup(
 
 let wjsn: KpopGroup = KpopGroup(
     name: "Cosmic Girls (WJSN)",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2016,
     membersCount: 13,
     members: ["Seola", "Exy", "Soobin", "Luda", "Dawon", "Bona", "Xuanyi", "Mei Qi", "Cheng Xiao", "Dayoung", "Eunseo", "Yeoreum", "Suyeon"],
@@ -427,7 +426,7 @@ let wjsn: KpopGroup = KpopGroup(
 
 let blackpink: KpopGroup = KpopGroup(
     name: "Blackpink",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2016,
     membersCount: 4,
     members: ["Jisoo", "Jennie", "Rosé", "Lisa"],
@@ -455,7 +454,7 @@ let ioi: KpopGroup = KpopGroup(
 
 let momoland: KpopGroup = KpopGroup(
     name: "Momoland",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2016,
     membersCount: 9,
     members: ["Hyebin", "Jane", "Nayun", "JooE", "Ahin", "Nancy", "Daisy", "Taeha", "Yeojin"],
@@ -469,7 +468,7 @@ let momoland: KpopGroup = KpopGroup(
 
 let dreamcatcher: KpopGroup = KpopGroup(
     name: "Dreamcatcher",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2017,
     membersCount: 7,
     members: ["JiU", "SuA", "Siyeon", "Handong", "Yoohyeon", "Dami", "Gahyeon"],
@@ -481,16 +480,16 @@ let dreamcatcher: KpopGroup = KpopGroup(
     recentReleases: ["Scream", "BOCA", "Odd Eye"]
 )
 
-// --------------- 4th gen -------------
+// --------------- 4th -------------
 
 let gidle: KpopGroup = KpopGroup(
     name: "(G)I-DLE",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2018,
     membersCount: 6,
     members: ["Miyeon", "Minnie", "Soojin", "Soyeon", "Yuqi", "Shuhua"],
     soloists: ["Soyeon", "Minnie"],
-    generation: "4th gen",
+    generation: "4th",
     company: "Cube Entertainment",
     cameToBrazil: false,
     latestAlbum: "2",
@@ -499,12 +498,12 @@ let gidle: KpopGroup = KpopGroup(
 
 let izone: KpopGroup = KpopGroup(
     name: "IZ*ONE",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2018,
     membersCount: 12,
     members: ["Eunbi", "Sakura", "Hyewon", "Yena", "Chaeyeon", "Chaewon", "Minju", "Nako", "Hitomi", "Yuri", "Yujin", "Wonyoung"],
     soloists: ["Eunbi", "Yena", "Chaeyeon", "Yuri"],
-    generation: "4th gen",
+    generation: "4th",
     company: "Off The Record Entertainment",
     cameToBrazil: false,
     latestAlbum: "One-reeler / Act IV",
@@ -513,12 +512,12 @@ let izone: KpopGroup = KpopGroup(
 
 let loona: KpopGroup = KpopGroup(
     name: "LOONA",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2018,
     membersCount: 12,
     members: ["HeeJin", "HyunJin", "HaSeul", "YeoJin", "ViVi", "Kim Lip", "JinSoul", "Choerry", "Yves", "Chuu", "Go Won", "Olivia Hye"],
     soloists: ["HeeJin", "HyunJin", "HaSeul", "Yves", "Chuu", "Kim Lip", "JinSoul"],
-    generation: "4th gen",
+    generation: "4th",
     company: "Blockberry Creative",
     cameToBrazil: false,
     latestAlbum: "[12:00]",
@@ -527,12 +526,12 @@ let loona: KpopGroup = KpopGroup(
 
 let fromis9: KpopGroup = KpopGroup(
     name: "fromis_9",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2018,
     membersCount: 9,
     members: ["Saerom", "Hayoung", "Gyuri", "Jiwon", "Jisun", "Seoyeon", "Chaeyoung", "Nakyung", "Jiheon"],
     soloists: [],
-    generation: "4th gen",
+    generation: "4th",
     company: "Pledis Entertainment",
     cameToBrazil: false,
     latestAlbum: "My Little Society",
@@ -540,13 +539,13 @@ let fromis9: KpopGroup = KpopGroup(
 )
 
 let cherryBullet: KpopGroup = KpopGroup(
-    name: "Cherry Bullet",
-    type: "Girl Group",
+    name: "CherryBullet",
+    type: "GirlGroup",
     debutYear: 2019,
     membersCount: 7,
     members: ["Haeyoon", "Yuju", "Mirae", "Bora", "Jiwon", "Kokoro", "Remi"],
     soloists: [],
-    generation: "4th gen",
+    generation: "4th",
     company: "FNC Entertainment",
     cameToBrazil: false,
     latestAlbum: "Cherry Rush",
@@ -555,12 +554,12 @@ let cherryBullet: KpopGroup = KpopGroup(
 
 let itzy: KpopGroup = KpopGroup(
     name: "ITZY",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2019,
     membersCount: 5,
     members: ["Yeji", "Lia", "Ryujin", "Chaeryeong", "Yuna"],
     soloists: [],
-    generation: "4th gen",
+    generation: "4th",
     company: "JYP Entertainment",
     cameToBrazil: true,
     latestAlbum: "Guess Who",
@@ -569,12 +568,12 @@ let itzy: KpopGroup = KpopGroup(
 
 let everglow: KpopGroup = KpopGroup(
     name: "EVERGLOW",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2019,
     membersCount: 6,
     members: ["E:U", "Sihyeon", "Mia", "Onda", "Aisha", "Yiren"],
     soloists: [],
-    generation: "4th gen",
+    generation: "4th",
     company: "Yuehua Entertainment",
     cameToBrazil: false,
     latestAlbum: "Return of the Girl",
@@ -583,12 +582,12 @@ let everglow: KpopGroup = KpopGroup(
 
 let rocketPunch: KpopGroup = KpopGroup(
     name: "Rocket Punch",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2019,
     membersCount: 6,
     members: ["Juri", "Yeojin", "Suyun", "Yunkyoung", "Sohee", "Dahyun"],
     soloists: [],
-    generation: "4th gen",
+    generation: "4th",
     company: "Woollim Entertainment",
     cameToBrazil: false,
     latestAlbum: "Ring Ring",
@@ -597,12 +596,12 @@ let rocketPunch: KpopGroup = KpopGroup(
 
 let aespa: KpopGroup = KpopGroup(
     name: "aespa",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2020,
     membersCount: 4,
     members: ["Karina", "Giselle", "Winter", "Ningning"],
     soloists: [],
-    generation: "4th gen",
+    generation: "4th",
     company: "SM Entertainment",
     cameToBrazil: false,
     latestAlbum: "Savage",
@@ -611,12 +610,12 @@ let aespa: KpopGroup = KpopGroup(
 
 let stayc: KpopGroup = KpopGroup(
     name: "STAYC",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2020,
     membersCount: 6,
     members: ["Sumin", "Sieun", "Isa", "Seeun", "Yoon", "J"],
     soloists: [],
-    generation: "4th gen",
+    generation: "4th",
     company: "High-Up Entertainment",
     cameToBrazil: false,
     latestAlbum: "Star To A Young Culture",
@@ -625,12 +624,12 @@ let stayc: KpopGroup = KpopGroup(
 
 let purplekiss: KpopGroup = KpopGroup(
     name: "Purple Kiss",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2021,
     membersCount: 7,
     members: ["Park Ji-eun", "Na Go-eun", "Dosie", "Ireh", "Yuki", "Chaein", "Swan"],
     soloists: [],
-    generation: "4th gen",
+    generation: "4th",
     company: "RBW",
     cameToBrazil: false,
     latestAlbum: "Into Violet",
@@ -639,12 +638,12 @@ let purplekiss: KpopGroup = KpopGroup(
 
 let tribe: KpopGroup = KpopGroup(
     name: "TRI.BE",
-    type: "Girl Group",
+    type: "GirlGroup",
     debutYear: 2021,
     membersCount: 7,
     members: ["Songsun", "Jia", "Kelly", "Soeun", "Hyunbin", "Mire"],
     soloists: [],
-    generation: "4th gen",
+    generation: "4th",
     company: "TR Entertainment",
     cameToBrazil: false,
     latestAlbum: "Conmigo",
@@ -664,6 +663,8 @@ let ive: KpopGroup = KpopGroup(
     latestAlbum: "I'VE MINE",
     recentReleases: ["All Night (feat. "]
 )
+
+// Adicionar o resto dos grupos da 4th geração
 
 // -------------------- B O Y ----------------------
 
