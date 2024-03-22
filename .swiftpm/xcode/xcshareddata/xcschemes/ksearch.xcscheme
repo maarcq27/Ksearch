@@ -52,7 +52,27 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "help search"
-            isEnabled = "YES">
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "info Gain"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "info &quot;Fin.K.L&quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--type &quot;girl group&quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-t &quot;Girl Group&quot;"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-t gg"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = " help info"
@@ -67,16 +87,16 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--type GirlGroup"
+            argument = "info Baby V.O.X"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "info GFriend"
+            argument = "help info"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-c others"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-c sm"
@@ -87,7 +107,7 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-s FemaleSolo"
+            argument = "-s &quot;Female Solo&quot;"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
@@ -108,14 +128,10 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "three"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "info KARA"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "five"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument

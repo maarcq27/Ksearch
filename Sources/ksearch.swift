@@ -3,7 +3,6 @@
 // 
 // Swift Argument Parser
 // https://swiftpackageindex.com/apple/swift-argument-parser/documentation
-
 import Foundation
 import ArgumentParser
 
@@ -14,8 +13,6 @@ enum Quantity: String, ExpressibleByArgument {
 }
 
 var resultado: [Int] = []
-
-// Main [Search, Info]
 
 @main
 struct Ksearch: ParsableCommand {
@@ -28,9 +25,7 @@ struct Search: ParsableCommand {
     static var configuration = CommandConfiguration(
         
         abstract: "Kpop Artist Finder",     // OVERVIEW
-        
         usage: "ksearch <quantity> [--type <type>] [--generation <generation>] [--soloist <soloist>] [--company <company>] [--members-count <members-count>] [--info <info>] [--brazil]",  // USAGE
-        
         discussion: """
                     _   __ _____ _____  ___  ______  _____  _   _
                     | | / //  ___|  ___|/ _ \\ | ___ \\/  __ \\| | | |
@@ -39,15 +34,15 @@ struct Search: ParsableCommand {
                     | |\\  \\/\\__/ / |___| | | || |\\ \\ | \\__/\\| | | |
                     \\_| \\_/\\____/\\____/\\_| |_/\\_| \\_| \\____/\\_| |_|
                     
-                    This tool is designed to assist in searching for solo K-Pop artists or K-Pop groups, providing random names or filtering by user preferences such as group type, generation, number of members, company, and visits to Brazil. Furthermore, the user will be able to obtain more information about the discovered artists or other artists they already know and would like to learn more about them.
+                    This tool is designed to assist in searching for solo K-Pop artists or K-Pop groups, providing random names or filtering by user preferences such as group type, generation, number of members, company, and visits to Brazil. Furthermore, the user will be able to obtain more information about the discovered artists or other artists they already know and would like to learn more about them. \n
+                    Tip: If the value has two or more words, try writing the value within quotation marks.
                     """
-            // EXPLICA O QUE O PROGRAMA FAZ
     )
     @Argument(help: "Ask for one, three, or five K-pop artists.")
     var quantity: Quantity    // só três casos: 1, 3 ou 5 grupo/solo
     
     //TIPO DE GRUPO      -t --type gg ou bg ou mg
-    @Option(name: .shortAndLong, help: "girlgroup or gg , boygroup or bg, mixedgroup or mg.")
+    @Option(name: .shortAndLong, help: "Girl Group or gg , Boy Group or bg, Mixed Group or mg.")
     var type: String = ""
     
     //GERAÇÃO DO GRUPO     -g --generation 1st ou 2nd ou 3rd ou 4th
@@ -55,7 +50,7 @@ struct Search: ParsableCommand {
     var generation: String = ""
     
     //TIPO SOLISTA      -s --soloist fs ou ms
-    @Option(name: .shortAndLong, help: "femalesoloist or fm, malesoloist or ms")
+    @Option(name: .shortAndLong, help: "Female Solo or fs, Male Solo or ms")
     var soloist: String = ""
     
     //EMPRESA DO GRUPO/SOLISTA  -c --company
@@ -79,22 +74,15 @@ struct Search: ParsableCommand {
     }
     
     mutating func filter () {
-        
         appendIndices()
-        
         filterSolo(soloist: soloist, generation: generation, company: company, brazil: brazil)
         filterGroup(type: type, generation: generation, company: company, membersCount: membersCount, brazil: brazil)
-        
         aleatorio()
-        
     }
     
     func aleatorio () {
-        resultado.shuffle()
-        
         if !resultado.isEmpty {
             print("Here is the result of your search. 🤗 \n")
-            
             for i in 0...(resultado.count - 1) {
                 if quantity.self.rawValue == "one" {
                     if i > 0 {
@@ -129,17 +117,32 @@ struct Search: ParsableCommand {
     }
     
     func appendIndices() {
-        
         for i in 0...(kpopGroup.count + kSolo.count - 1) {
             resultado.append(i)
         }
-    
         if !type.isEmpty && !soloist.isEmpty {
             print("Choose the type OR soloist")
+            Search.exit()
+        }
+    }
+    // TODO: Estudar na bridge diferença de value type x reference type
+    mutating func setupFullType() {
+        if self.type == "gg" {
+            self.type = "Girl Group"
+        }
+        if self.type == "bg" {
+            self.type = "Boy Group"
         }
     }
     
-    // TODO: Estudar na bridge diferença de value type x reference type
+    mutating func setupFullSoloist() {
+        if self.soloist == "fs" {
+            self.soloist = "Female Solo"
+        }
+        if self.soloist == "ms" {
+            self.soloist = "Male Solo"
+        }
+    }
     
     mutating func setupFullNameCompany() {
         if self.company == "sm" {
@@ -159,57 +162,94 @@ struct Search: ParsableCommand {
         }
     }
     // TODO: Experimentar funções com inout e sem
-    fileprivate func checkOtherCompanies(_ i: (Int), _ removed: inout Bool) {
+    fileprivate func checkOtherCompanies(_ i: (Int), _ removed: inout Bool, _ type: String) {
         if self.company == "others" {
-            if kpopGroup[i].company.contains("SM Entertainment") || kpopGroup[i].company.contains("JYP Entertainment") || kpopGroup[i].company.contains("Hybe") || kpopGroup[i].company.contains("YG Entertainment") || kpopGroup[i].company.contains("Starship Entertainment") {
+            if (kpopGroup[i].company.contains("SM Entertainment") || kpopGroup[i].company.contains("JYP Entertainment") || kpopGroup[i].company.contains("Hybe") || kpopGroup[i].company.contains("YG Entertainment") || kpopGroup[i].company.contains("Starship Entertainment")) && type == "Group" {
                 resultado.remove(at: i)
                 removed = true
+            }
+            if i < kSolo.count {
+                if (kSolo[i].company.contains("SM Entertainment") || kSolo[i].company.contains("JYP Entertainment") || kSolo[i].company.contains("Hybe") || kSolo[i].company.contains("YG Entertainment") || kSolo[i].company.contains("Starship Entertainment")) && type == "Solo" {
+                    resultado.remove(at: i + kpopGroup.count)
+                    removed = true
+                }
             }
         } else {
-            resultado.remove(at: i)
-            removed = true
+            if type == "Group" {
+                resultado.remove(at: i)
+                removed = true
+            }
+            if type == "Solo"{
+                resultado.remove(at: i + kpopGroup.count)
+                removed = true
+            }
+            
         }
     }
     
-    fileprivate func filterType(_ type: String, _ i: (Int), _ removed: inout Bool) {
+    fileprivate mutating func filterType(_ type: String, _ i: (Int), _ removed: inout Bool) {
         if !type.isEmpty || !soloist.isEmpty {
-            if !kpopGroup[i].type.contains(type) {
+            setupFullType()
+            if !kpopGroup[i].type.contains(self.type) {
                 resultado.remove(at: i)
                 removed = true
             }
         }
     }
     
-    fileprivate func filterGeneration(_ removed: inout Bool, _ generation: String, _ i: (Int)) {
-        if !removed, !generation.isEmpty {
+    fileprivate func filterGeneration(_ removed: inout Bool, _ generation: String, _ i: (Int), _ type: String) {
+        if !removed, !generation.isEmpty, type == "Group" {
             if !kpopGroup[i].generation.contains(generation) {
                 resultado.remove(at: i)
                 removed = true
             }
         }
-    }
-    
-    fileprivate mutating func filterCompany(_ removed: inout Bool, _ company: String, _ i: (Int)) {
-        if !removed, !company.isEmpty {
-            setupFullNameCompany()
-            if !kpopGroup[i].company.contains(self.company) {
-                checkOtherCompanies(i, &removed)
-            }
-        }
-    }
-    
-    fileprivate func filterMembers(_ removed: inout Bool, _ membersCount: Int, _ i: (Int)) {
-        if !removed, membersCount != 0 {
-            if kpopGroup[i].membersCount != membersCount {
+        if !removed, !generation.isEmpty, type == "Solo" {
+            if !kSolo[i].generation.contains(generation) {
                 resultado.remove(at: i)
                 removed = true
             }
         }
     }
     
-    fileprivate func filterBrazilGroup(_ removed: inout Bool, _ brazil: Bool, _ i: (Int)) {
-        if !removed, brazil {
+    fileprivate mutating func filterCompany(_ removed: inout Bool, _ company: String, _ i: (Int), _ type: String) {
+        if !removed, !company.isEmpty {
+            setupFullNameCompany()
+            if !kpopGroup[i].company.contains(self.company), type == "Group" {
+                checkOtherCompanies(i, &removed, type)
+            }
+            if i < kSolo.count {
+                if !kSolo[i].company.contains(self.company), type == "Solo" {
+                    checkOtherCompanies(i, &removed, type)
+                }
+            }
+        }
+    }
+    
+    fileprivate func filterMembers(_ removed: inout Bool, _ membersCount: Int, _ i: (Int), _ type: String) {
+        if !removed, membersCount != 0, type == "Group" {
+            if kpopGroup[i].membersCount != membersCount {
+                resultado.remove(at: i)
+                removed = true
+            }
+        }
+        if !removed, membersCount != 0, type == "Solo" {
+            if kSolo[i].membersCount != membersCount {
+                resultado.remove(at: i)
+                removed = true
+            }
+        }
+    }
+    
+    fileprivate func filterBrazil(_ removed: inout Bool, _ brazil: Bool, _ i: (Int), _ type: String) {
+        if !removed, brazil, type == "Group" {
             if !kpopGroup[i].cameToBrazil {
+                resultado.remove(at: i)
+                removed = true
+            }
+        }
+        if !removed, brazil, type == "Solo" {
+            if !kSolo[i].cameToBrazil {
                 resultado.remove(at: i)
                 removed = true
             }
@@ -217,93 +257,62 @@ struct Search: ParsableCommand {
     }
     
     mutating func filterGroup(type: String, generation: String, company: String, membersCount: Int, brazil: Bool) {
-        
         var i = (kpopGroup.count - 1)
-
+        let typeFunc = "Group"
         while i > -1 {
             var removed: Bool = false
             filterType(type, i, &removed)
-            filterGeneration(&removed, generation, i)
-            filterCompany(&removed, company, i)
-            filterMembers(&removed, membersCount, i)
-            filterBrazilGroup(&removed, brazil, i)
+            filterGeneration(&removed, generation, i, typeFunc)
+            filterCompany(&removed, company, i, typeFunc)
+            filterMembers(&removed, membersCount, i, typeFunc)
+            filterBrazil(&removed, brazil, i, typeFunc)
             i -= 1
         }
     }
 
-    fileprivate func filterSoloist(_ soloist: String, _ i: (Int), _ removed: inout Bool) {
+    fileprivate mutating func filterSoloist(_ soloist: String, _ i: (Int), _ removed: inout Bool) {
         if !soloist.isEmpty || !type.isEmpty {
-            if !kSolo[i].soloist.contains(soloist) {
+            setupFullSoloist()
+            if !kSolo[i].soloist.contains(self.soloist) {
                 resultado.remove(at: (i + kpopGroup.count))
                 removed = true
             }
         }
     }
     
-    fileprivate func filterGenerationSolo(_ removed: inout Bool, _ generation: String, _ i: (Int)) {
-        if !removed, !generation.isEmpty {
-            if !kSolo[i].generation.contains(generation) {
-                resultado.remove(at: i + kpopGroup.count)
-                removed = true
-            }
-        }
-    }
-    
     mutating func filterSolo(soloist: String, generation: String, company: String, brazil: Bool) {
-            
         var i = (kSolo.count - 1)
+        let typeFunc = "Solo"
         while i > -1 {
             var removed: Bool = false
             filterSoloist(soloist, i, &removed)
-            filterGenerationSolo(&removed, generation, i)
-            if !removed, !company.isEmpty {
-                setupFullNameCompany()
-                if !kSolo[i].company.contains(self.company) {
-                    if self.company == "others" {
-                        if kSolo[i].company.contains("SM Entertainment") || kSolo[i].company.contains("JYP Entertainment") || kSolo[i].company.contains("Hybe") || kSolo[i].company.contains("YG Entertainment") || kSolo[i].company.contains("Starship Entertainment") {
-                            resultado.remove(at: i + kpopGroup.count)
-                            removed = true
-                        }
-                    } else {
-                        resultado.remove(at: i + kpopGroup.count)
-                        removed = true
-                    }
-                }
-            }
-            if !removed, membersCount != 0 {
-                if kSolo[i].membersCount != membersCount {
-                    resultado.remove(at: i + kpopGroup.count)
-                    removed = true
-                }
-            }
-            if !removed, brazil {
-                if !kSolo[i].cameToBrazil {
-                    resultado.remove(at: i + kpopGroup.count)
-                    removed = true
-                }
-            }
+            filterGeneration(&removed, generation, i, typeFunc)
+            filterCompany(&removed, company, i, typeFunc)
+            filterMembers(&removed, membersCount, i, typeFunc)
+            filterBrazil(&removed, brazil, i, typeFunc)
             i -= 1
         }
     }
-    
 }
 
 struct Info: ParsableCommand {
-  
     static let configuration = CommandConfiguration(
         commandName: "info",
-        abstract: "Get detailed information about a K-pop group. 🫰🏼"
+        abstract: "Get detailed information about a K-pop group. 🫰🏼",
+        discussion: """
+        Tip: If the group/solo has a name with two or more words, try writing the name within quotation marks.
+        """
     )
-    
     @Argument (help: "Get detailed information about a K-pop group. 🫰🏼")
     var artistName: String
     
     func run() throws {
-        
         for i in 0...(kpopGroup.count + kSolo.count - 1) {
-            if kpopGroup[i].name.contains(artistName) {
-                printDetailsGroup(i)
-                break
+            if i < kpopGroup.count - 1 {
+                if kpopGroup[i].name.contains(artistName) {
+                    printDetailsGroup(i)
+                    break
+                }
             }
             if i > kpopGroup.count - 1 {
                 if kSolo[i - kpopGroup.count].name.contains(artistName) {
@@ -312,18 +321,77 @@ struct Info: ParsableCommand {
                 }
             }
             if i == kpopGroup.count + kSolo.count - 1 {
-                print("Your search did not return any results. 🥲")
+                print("Your search did not return any results. 🥲 /n Tip: If the group/solo has a name with two or more words, try writing the name within quotation marks.\n")
             }
         }
-        
-        print("")
     }
     
     func printDetailsGroup (_ indice: Int) {
-        print("Name: \(kpopGroup[indice].name)\n Type: \(kpopGroup[indice].type)\n Debut year: \(kpopGroup[indice].debutYear)\n Number of members: \(kpopGroup[indice].membersCount)\n Members: \(kpopGroup[indice].members)\n Soloists: \(kpopGroup[indice].soloists)\n Generation: \(kpopGroup[indice].generation)\n Company: \(kpopGroup[indice].company)\n Came to Brazil?\(kpopGroup[indice].cameToBrazil)\n Latest album: \(kpopGroup[indice].latestAlbum)\n Recent releases: \(kpopGroup[indice].recentReleases)")
+        print("Name: \(kpopGroup[indice].name)\nType: \(kpopGroup[indice].type)\nDebut year: \(kpopGroup[indice].debutYear)\nNumber of members: \(kpopGroup[indice].membersCount)")
+        print("Members: ", terminator: "")
+        for i in 0...kpopGroup[indice].members.count - 1 {
+            if i == kpopGroup[indice].members.count - 1 {
+                print((kpopGroup[indice].members[i]), terminator: "")
+            } else {
+                print((kpopGroup[indice].members[i]), terminator: ", ")
+            }
+        }
+        print("\nSoloists: ", terminator: "")
+        if kpopGroup[indice].soloists.count != 0 {
+            for i in 0...kpopGroup[indice].soloists.count - 1 {
+                if i == kpopGroup[indice].soloists.count - 1 {
+                    print((kpopGroup[indice].soloists[i]), terminator: "")
+                } else {
+                    print((kpopGroup[indice].soloists[i]), terminator: ", ")
+                }
+            }
+        } else {
+            print("None 😢")
+        }
+        print("\nGeneration: \(kpopGroup[indice].generation)\nCompany: \(kpopGroup[indice].company)\nCame to Brazil? \(kpopGroup[indice].cameToBrazil)")
+        printReleases(indice, type: "Group")
     }
     
     func printDetailsSolo (_ indice: Int) {
-        print("Name: \(kSolo[indice].name)\n Type: \(kSolo[indice].soloist)\n Debut solo: \(kSolo[indice].debut)\n Belongs to group? \(kSolo[indice].belongsToGroup)\n Generation: \(kSolo[indice].generation)\n Company: \(kSolo[indice].company)\n Came to Brazil?\(kSolo[indice].cameToBrazil)\n Latest korean releases: \(kSolo[indice].latestKoreanReleases)\n Most popular releases: \(kSolo[indice].mostPopularReleases)")
+        print("Name: \(kSolo[indice].name)\nType: \(kSolo[indice].soloist)\nDebut solo: \(kSolo[indice].debut)\nBelongs to group? \(kSolo[indice].belongsToGroup)\nGeneration: \(kSolo[indice].generation)\nCompany: \(kSolo[indice].company)\nCame to Brazil? \(kSolo[indice].cameToBrazil)")
+        printReleases(indice, type: "Solo")
+    }
+    
+    func printReleases (_ indice: Int, type: String) {
+        if type == "Solo" {
+            print("Latest korean releases: ", terminator: "")
+            for i in 0...kSolo[indice].latestKoreanReleases.count - 1 {
+                if i < kSolo[indice].latestKoreanReleases.count - 1 {
+                    print((kSolo[indice].latestKoreanReleases[i]), terminator: ", ")
+                } else {
+                    print((kSolo[indice].latestKoreanReleases[i]), terminator: "")
+                }
+            }
+            print("\nMost popular releases: ", terminator: "")
+            for i in 0...kSolo[indice].mostPopularReleases.count - 1 {
+                if i < kSolo[indice].mostPopularReleases.count - 1 {
+                    print((kSolo[indice].mostPopularReleases[i]), terminator: ", ")
+                } else {
+                    print((kSolo[indice].mostPopularReleases[i]))
+                }
+            }
+        } else if type == "Group"{
+            print("Latest korean releases: ", terminator: "")
+            for i in 0...kpopGroup[indice].latestKoreanReleases.count - 1 {
+                if i < kpopGroup[indice].latestKoreanReleases.count - 1 {
+                    print((kpopGroup[indice].latestKoreanReleases[i]), terminator: ", ")
+                } else {
+                    print((kpopGroup[indice].latestKoreanReleases[i]), terminator: "")
+                }
+            }
+            print("\nMost popular releases: ", terminator: "")
+            for i in 0...kpopGroup[indice].mostPopularReleases.count - 1 {
+                if i < kpopGroup[indice].mostPopularReleases.count - 1 {
+                    print((kpopGroup[indice].mostPopularReleases[i]), terminator: ", ")
+                } else {
+                    print((kpopGroup[indice].mostPopularReleases[i]))
+                }
+            }
+        }
     }
 }

@@ -28,7 +28,7 @@ let kSolo: [KpopSolo] = [taeyeon, chungha, boa, leeHyori, uhmJungHwa, bada, jang
 
 let taeyeon = KpopSolo(
     name: "Taeyeon",
-    soloist: "FemaleSolo",
+    soloist: "Female Solo",
     debut: 2014,
     membersCount: 1,
     belongsToGroup: true,
@@ -41,7 +41,7 @@ let taeyeon = KpopSolo(
 
 let chungha = KpopSolo(
     name: "Chung-ha",
-    soloist: "FemaleSolo",
+    soloist: "Female Solo",
     debut: 2017,
     membersCount: 1,
     belongsToGroup: true, // Anteriormente pertenceu ao grupo I.O.I
@@ -54,7 +54,7 @@ let chungha = KpopSolo(
 
 let boa = KpopSolo(
     name: "BoA",
-    soloist: "FemaleSolo",
+    soloist: "Female Solo",
     debut: 2000,
     membersCount: 1,
     belongsToGroup: false,
@@ -67,7 +67,7 @@ let boa = KpopSolo(
 
 let leeHyori = KpopSolo(
     name: "Lee Hyori",
-    soloist: "FemaleSolo",
+    soloist: "Female Solo",
     debut: 2003,
     membersCount: 1,
     belongsToGroup: true, // Anteriormente pertenceu ao grupo Fin.K.L
@@ -80,7 +80,7 @@ let leeHyori = KpopSolo(
 
 let uhmJungHwa = KpopSolo(
     name: "Uhm Jung Hwa",
-    soloist: "FemaleSolo",
+    soloist: "Female Solo",
     debut: 1993,
     membersCount: 1,
     belongsToGroup: true, // REFUND SISTERS
@@ -93,7 +93,7 @@ let uhmJungHwa = KpopSolo(
 
 let bada = KpopSolo(
     name: "Bada",
-    soloist: "FemaleSolo",
+    soloist: "Female Solo",
     debut: 2003,
     membersCount: 1,
     belongsToGroup: true, // Anteriormente pertenceu ao grupo S.E.S
@@ -106,7 +106,7 @@ let bada = KpopSolo(
 
 let jangNara = KpopSolo(
     name: "Jang Na-ra",
-    soloist: "FemaleSolo",
+    soloist: "Female Solo",
     debut: 2001,
     membersCount: 1,
     belongsToGroup: false,
@@ -119,7 +119,7 @@ let jangNara = KpopSolo(
 
 let parkJiYoon = KpopSolo(
     name: "Park Ji Yoon",
-    soloist: "FemaleSolo",
+    soloist: "Female Solo",
     debut: 1997,
     membersCount: 1,
     belongsToGroup: false,
@@ -132,7 +132,7 @@ let parkJiYoon = KpopSolo(
 
 let hyuna = KpopSolo(
     name: "HyunA",
-    soloist: "FemaleSolo",
+    soloist: "Female Solo",
     debut: 2010,
     membersCount: 1,
     belongsToGroup: true, // Anteriormente pertenceu ao grupo 4Minute e Wonder Girls
@@ -145,7 +145,7 @@ let hyuna = KpopSolo(
 
 let iu = KpopSolo(
     name: "IU",
-    soloist: "FemaleSolo",
+    soloist: "Female Solo",
     debut: 2008,
     membersCount: 1,
     belongsToGroup: false,
@@ -158,7 +158,7 @@ let iu = KpopSolo(
 
 let ailee = KpopSolo(
     name: "Ailee",
-    soloist: "FemaleSolo",
+    soloist: "Female Solo",
     debut: 2012,
     membersCount: 1,
     belongsToGroup: false,
@@ -171,7 +171,7 @@ let ailee = KpopSolo(
 
 let gain = KpopSolo(
     name: "Gain",
-    soloist: "FemaleSolo",
+    soloist: "Female Solo",
     debut: 2010,
     membersCount: 1,
     belongsToGroup: true, // Anteriormente pertenceu ao grupo Brown Eyed Girls
@@ -184,7 +184,7 @@ let gain = KpopSolo(
 
 let tiffanyYoung = KpopSolo(
     name: "Tiffany Young",
-    soloist: "FemaleSolo",
+    soloist: "Female Solo",
     debut: 2016,
     membersCount: 1,
     belongsToGroup: true, // Anteriormente pertenceu ao grupo Girls' Generation
@@ -197,7 +197,7 @@ let tiffanyYoung = KpopSolo(
 
 let heize = KpopSolo(
     name: "Heize",
-    soloist: "FemaleSolo",
+    soloist: "Female Solo",
     debut: 2014,
     membersCount: 1,
     belongsToGroup: false,
@@ -210,7 +210,7 @@ let heize = KpopSolo(
 
 let baekYerin = KpopSolo(
     name: "Yerin Baek",
-    soloist: "FemaleSolo",
+    soloist: "Female Solo",
     debut: 2019,
     membersCount: 1,
     belongsToGroup: true, // Anteriormente pertenceu ao grupo 15&
@@ -223,7 +223,7 @@ let baekYerin = KpopSolo(
 
 let leeHi = KpopSolo(
     name: "Lee Hi",
-    soloist: "FemaleSolo",
+    soloist: "Female Solo",
     debut: 2012,
     membersCount: 1,
     belongsToGroup: false,
@@ -236,7 +236,7 @@ let leeHi = KpopSolo(
 
 let sunmi = KpopSolo(
     name: "Sunmi",
-    soloist: "FemaleSolo",
+    soloist: "Female Solo",
     debut: 2013,
     membersCount: 1,
     belongsToGroup: true, // Anteriormente pertenceu ao grupo Wonder Girls
@@ -249,7 +249,7 @@ let sunmi = KpopSolo(
 
 let suran = KpopSolo(
     name: "Suran",
-    soloist: "FemaleSolo",
+    soloist: "Female Solo",
     debut: 2014,
     membersCount: 1,
     belongsToGroup: false,
@@ -262,7 +262,7 @@ let suran = KpopSolo(
 
 let yooa = KpopSolo(
     name: "YooA",
-    soloist: "FemaleSolo",
+    soloist: "Female Solo",
     debut: 2020,
     membersCount: 1,
     belongsToGroup: true, // Pertence ao grupo OH MY GIRL
@@ -275,7 +275,7 @@ let yooa = KpopSolo(
 
 let hwasa = KpopSolo(
     name: "Hwasa",
-    soloist: "FemaleSolo",
+    soloist: "Female Solo",
     debut: 2019,
     membersCount: 1,
     belongsToGroup: true, // Pertence ao grupo MAMAMOO
