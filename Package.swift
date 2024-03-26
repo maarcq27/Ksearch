@@ -10,7 +10,7 @@ let package = Package(
         ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.2.0"),
-        .package(url: "https://github.com/realm/SwiftLint", from: "0.54.0"),
+        //.package(url: "https://github.com/realm/SwiftLint", from: "0.54.0"),
         
     ],
     targets: [
@@ -20,8 +20,7 @@ let package = Package(
             name: "ksearch",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
-            ],
-            plugins: [.plugin(name: "SwiftLintPlugin", package: "SwiftLint")]
+            ]//, plugins: [.plugin(name: "SwiftLintPlugin", package: "SwiftLint")]
         ),
     ]
 )

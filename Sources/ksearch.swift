@@ -17,24 +17,36 @@ var resultado: [Int] = []
 @main
 struct Ksearch: ParsableCommand {
     
-    static var configuration = CommandConfiguration(subcommands: [Search.self, Info.self], defaultSubcommand: Search.self)
-    
+    static var configuration = CommandConfiguration(abstract: "Kpop Artist Finder", usage: "ksearch <quantity> [--type <type>] [--generation <generation>] [--soloist <soloist>] [--company <company>] [--members-count <members-count>] [--info <info>] [--brazil] \nOR \nksearch info <artistName>", discussion:  """
+                                                         _   __ _____ _____  ___  ______  _____  _   _
+                                                        | | / //  ___|  ___|/ _ \\ | ___ \\/  __ \\| | | |
+                                                        | |/ / \\ `--.| |__ / /_\\ \\| |_/ /| /  \\/| |_| |
+                                                        |    \\  `--. \\  __||  _  ||    / | |    |  _  |
+                                                        | |\\  \\/\\__/ / |___| | | || |\\ \\ | \\__/\\| | | |
+                                                        \\_| \\_/\\____/\\____/\\_| |_/\\_| \\_| \\____/\\_| |_|
+                                                        
+                                                        ✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨✨
+                                                        
+                                                        This tool is designed to assist in searching for solo K-Pop artists or K-Pop groups, providing random names or filtering by user preferences such as group type, generation, number of members, company or if they came to Brazil. Furthermore, the user will be able to obtain more information about the discovered artists or other artists they already know and would like to learn more about them. \n
+                                                        Tip: If the value has two or more words, try writing the value within quotation marks. \n
+                                                          -t, --type <type>                    Girl Group or gg , Boy Group or bg.
+                                                          -g, --generation <generation>        1st, 2nd, 3rd or 4th.
+                                                          -s, --soloist <soloist>              Female Solo or fs, Male Solo or ms
+                                                          -c, --company <company>              sm, hybe, jyp, yg, starship or others.
+                                                          -m, --members-count <members-count>  Choose a number from 2 to 24.
+                                                          -b, --brazil                         Artists who have already come to Brazil
+                                                          
+                                                        """, subcommands: [Search.self, Info.self], defaultSubcommand: Search.self
+                                                    
+    )
 }
 struct Search: ParsableCommand {
     
     static var configuration = CommandConfiguration(
         
-        abstract: "Kpop Artist Finder",     // OVERVIEW
-        usage: "ksearch <quantity> [--type <type>] [--generation <generation>] [--soloist <soloist>] [--company <company>] [--members-count <members-count>] [--info <info>] [--brazil]",  // USAGE
+        abstract: "Filter K-pop artists based on your preference. 🥳",
+        usage: "ksearch <quantity> [--type <type>] [--generation <generation>] [--soloist <soloist>] [--company <company>] [--members-count <members-count>] [--info <info>] [--brazil]",
         discussion: """
-                    _   __ _____ _____  ___  ______  _____  _   _
-                    | | / //  ___|  ___|/ _ \\ | ___ \\/  __ \\| | | |
-                    | |/ / \\ `--.| |__ / /_\\ \\| |_/ /| /  \\/| |_| |
-                    |    \\  `--. \\  __||  _  ||    / | |    |  _  |
-                    | |\\  \\/\\__/ / |___| | | || |\\ \\ | \\__/\\| | | |
-                    \\_| \\_/\\____/\\____/\\_| |_/\\_| \\_| \\____/\\_| |_|
-                    
-                    This tool is designed to assist in searching for solo K-Pop artists or K-Pop groups, providing random names or filtering by user preferences such as group type, generation, number of members, company, and visits to Brazil. Furthermore, the user will be able to obtain more information about the discovered artists or other artists they already know and would like to learn more about them. \n
                     Tip: If the value has two or more words, try writing the value within quotation marks.
                     """
     )
@@ -61,15 +73,14 @@ struct Search: ParsableCommand {
     @Option(name: .shortAndLong, help: "choose a number from 2 to 24.")
     var membersCount: Int = 0
     
-    //VER INFORMAÇÃO   --info Twice
-    @Option(name: .shortAndLong, help: "shows detailed info of the group or soloist")
-    var info: String = ""
-    
     //SE VEIO PARA O BR --> FLAG É OPCIONAL       -b  --brazil
     @Flag(name: .shortAndLong, help: "Kpop artists who have already come to Brazil")
     var brazil: Bool = false
     
     mutating func run() throws {
+        setupFullType()
+        setupFullNameCompany()
+        setupFullSoloist()
         filter()
     }
     
@@ -82,6 +93,7 @@ struct Search: ParsableCommand {
     
     func aleatorio () {
         if !resultado.isEmpty {
+            resultado.shuffle()
             print("Here is the result of your search. 🤗 \n")
             for i in 0...(resultado.count - 1) {
                 if quantity.self.rawValue == "one" {
@@ -116,7 +128,7 @@ struct Search: ParsableCommand {
         }
     }
     
-    func appendIndices() {
+    mutating func appendIndices() {
         for i in 0...(kpopGroup.count + kSolo.count - 1) {
             resultado.append(i)
         }
@@ -155,7 +167,7 @@ struct Search: ParsableCommand {
             self.company = "YG Entertainment"
         }
         if self.company == "hybe" {
-            self.company = "Hybe"
+            self.company = "HYBE"
         }
         if self.company == "starship" {
             self.company = "Starship Entertainment"
@@ -189,7 +201,6 @@ struct Search: ParsableCommand {
     
     fileprivate mutating func filterType(_ type: String, _ i: (Int), _ removed: inout Bool) {
         if !type.isEmpty || !soloist.isEmpty {
-            setupFullType()
             if !kpopGroup[i].type.contains(self.type) {
                 resultado.remove(at: i)
                 removed = true
@@ -206,7 +217,7 @@ struct Search: ParsableCommand {
         }
         if !removed, !generation.isEmpty, type == "Solo" {
             if !kSolo[i].generation.contains(generation) {
-                resultado.remove(at: i)
+                resultado.remove(at: i + kpopGroup.count)
                 removed = true
             }
         }
@@ -214,7 +225,6 @@ struct Search: ParsableCommand {
     
     fileprivate mutating func filterCompany(_ removed: inout Bool, _ company: String, _ i: (Int), _ type: String) {
         if !removed, !company.isEmpty {
-            setupFullNameCompany()
             if !kpopGroup[i].company.contains(self.company), type == "Group" {
                 checkOtherCompanies(i, &removed, type)
             }
@@ -235,7 +245,7 @@ struct Search: ParsableCommand {
         }
         if !removed, membersCount != 0, type == "Solo" {
             if kSolo[i].membersCount != membersCount {
-                resultado.remove(at: i)
+                resultado.remove(at: i + kpopGroup.count)
                 removed = true
             }
         }
@@ -250,7 +260,7 @@ struct Search: ParsableCommand {
         }
         if !removed, brazil, type == "Solo" {
             if !kSolo[i].cameToBrazil {
-                resultado.remove(at: i)
+                resultado.remove(at: i + kpopGroup.count)
                 removed = true
             }
         }
@@ -272,7 +282,6 @@ struct Search: ParsableCommand {
 
     fileprivate mutating func filterSoloist(_ soloist: String, _ i: (Int), _ removed: inout Bool) {
         if !soloist.isEmpty || !type.isEmpty {
-            setupFullSoloist()
             if !kSolo[i].soloist.contains(self.soloist) {
                 resultado.remove(at: (i + kpopGroup.count))
                 removed = true
@@ -298,12 +307,12 @@ struct Search: ParsableCommand {
 struct Info: ParsableCommand {
     static let configuration = CommandConfiguration(
         commandName: "info",
-        abstract: "Get detailed information about a K-pop group. 🫰🏼",
+        abstract: "Get detailed information about an artist. 🫰🏼",
         discussion: """
         Tip: If the group/solo has a name with two or more words, try writing the name within quotation marks.
         """
     )
-    @Argument (help: "Get detailed information about a K-pop group. 🫰🏼")
+    @Argument (help: "Enter the exact name of the group or soloist to find out more information. 😻")
     var artistName: String
     
     func run() throws {
@@ -321,7 +330,7 @@ struct Info: ParsableCommand {
                 }
             }
             if i == kpopGroup.count + kSolo.count - 1 {
-                print("Your search did not return any results. 🥲 /n Tip: If the group/solo has a name with two or more words, try writing the name within quotation marks.\n")
+                print("Your search did not return any results. 🥲 \nTip: If the group/solo has a name with two or more words, try writing the name within quotation marks.\n")
             }
         }
     }
@@ -346,7 +355,7 @@ struct Info: ParsableCommand {
                 }
             }
         } else {
-            print("None 😢")
+            print("None 😢", terminator: "")
         }
         print("\nGeneration: \(kpopGroup[indice].generation)\nCompany: \(kpopGroup[indice].company)\nCame to Brazil? \(kpopGroup[indice].cameToBrazil)")
         printReleases(indice, type: "Group")
@@ -362,7 +371,7 @@ struct Info: ParsableCommand {
             print("Latest korean releases: ", terminator: "")
             for i in 0...kSolo[indice].latestKoreanReleases.count - 1 {
                 if i < kSolo[indice].latestKoreanReleases.count - 1 {
-                    print((kSolo[indice].latestKoreanReleases[i]), terminator: ", ")
+                    print((kSolo[indice].latestKoreanReleases[i]), terminator: "; ")
                 } else {
                     print((kSolo[indice].latestKoreanReleases[i]), terminator: "")
                 }
@@ -370,7 +379,7 @@ struct Info: ParsableCommand {
             print("\nMost popular releases: ", terminator: "")
             for i in 0...kSolo[indice].mostPopularReleases.count - 1 {
                 if i < kSolo[indice].mostPopularReleases.count - 1 {
-                    print((kSolo[indice].mostPopularReleases[i]), terminator: ", ")
+                    print((kSolo[indice].mostPopularReleases[i]), terminator: "; ")
                 } else {
                     print((kSolo[indice].mostPopularReleases[i]))
                 }
@@ -379,7 +388,7 @@ struct Info: ParsableCommand {
             print("Latest korean releases: ", terminator: "")
             for i in 0...kpopGroup[indice].latestKoreanReleases.count - 1 {
                 if i < kpopGroup[indice].latestKoreanReleases.count - 1 {
-                    print((kpopGroup[indice].latestKoreanReleases[i]), terminator: ", ")
+                    print((kpopGroup[indice].latestKoreanReleases[i]), terminator: "; ")
                 } else {
                     print((kpopGroup[indice].latestKoreanReleases[i]), terminator: "")
                 }
@@ -387,7 +396,7 @@ struct Info: ParsableCommand {
             print("\nMost popular releases: ", terminator: "")
             for i in 0...kpopGroup[indice].mostPopularReleases.count - 1 {
                 if i < kpopGroup[indice].mostPopularReleases.count - 1 {
-                    print((kpopGroup[indice].mostPopularReleases[i]), terminator: ", ")
+                    print((kpopGroup[indice].mostPopularReleases[i]), terminator: "; ")
                 } else {
                     print((kpopGroup[indice].mostPopularReleases[i]))
                 }
