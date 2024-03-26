@@ -29,6 +29,7 @@ struct Ksearch: ParsableCommand {
                                                         
                                                         This tool is designed to assist in searching for solo K-Pop artists or K-Pop groups, providing random names or filtering by user preferences such as group type, generation, number of members, company or if they came to Brazil. Furthermore, the user will be able to obtain more information about the discovered artists or other artists they already know and would like to learn more about them. \n
                                                         Tip: If the value has two or more words, try writing the value within quotation marks. \n
+                                                                   <quantity>                  Ask for one, three, or five K-pop artists.
                                                           -t, --type <type>                    Girl Group or gg , Boy Group or bg.
                                                           -g, --generation <generation>        1st, 2nd, 3rd or 4th.
                                                           -s, --soloist <soloist>              Female Solo or fs, Male Solo or ms
